@@ -1,0 +1,19 @@
+<div class="consultation-item">
+    <span class="consultation-item__consultation-date">{{consultation.consultationDate | date:'y-MM-dd'}}</span>
+    <h3 class="consultation-item__header">{{consultation.patient.name}}</h3>
+    <button class="consultation-item__show-details" [attr.aria-expanded]="(!detailsHidden)"
+            (click)="toggleShowDetails()">
+        <span class="visually-hidden">Show details</span>
+    </button>
+
+    <div class="consultation-item__details" [ngClass]="{'consultation-item__details--expanded': !detailsHidden}"
+         [attr.aria-hidden]="detailsHidden">
+        <p>
+            <img src="{{consultation.doctor.image.url}}" class="consultation-item__doctor-image"/>
+            Doctor: {{consultation.doctor.name}} / {{consultation.doctor.id}} / {{consultation.doctor.role}}
+        </p>
+        <p>Room: {{consultation.room.name}}</p>
+        <p>Machine: {{consultation.room.treatmentMachine.name}}</p>
+        <span class="consultation-item__registration-date">{{consultation.registrationDate | date:'y-MM-dd'}}</span>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+.consultation-item {
+    border-bottom: 1px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.consultation-item__header {
+    text-align: right;
+    margin:0;
+}
+.consultation-item__consultation-date {
+    display: block;
+}
+
+
+.consultation-item__details {
+    display: none;
+    width: 100%;
+
+    &--expanded{
+        display: block;
+    }
+}
+
+.consultation-item__doctor-image{
+    max-width: 300px;
+    min-width: 100px;
+    width: 30%;
+}
+
+.consultation-item__registration-date{
+}
