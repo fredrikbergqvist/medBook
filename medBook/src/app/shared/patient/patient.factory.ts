@@ -15,7 +15,6 @@ export class PatientFactory {
             null);
         return Observable.create(o => {
             if (patientJson.imageId) {
-                console.log('patient',patientJson);
                 this.imageService.getImage(patientJson.imageId).subscribe(img => {
                     patient.image = img;
                     o.next(patient);

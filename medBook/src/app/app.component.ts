@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
     public selectedDate = new Date();
+    public showConsultationList = true;
 
     public dateChanged(date) {
         const newDate = !date
@@ -14,5 +15,13 @@ export class AppComponent {
             : new Date(date);
 
         this.selectedDate = newDate;
+    }
+
+    public addPatientClick() {
+        this.showConsultationList = false;
+    }
+
+    public patientAdded() {
+        this.showConsultationList = true;
     }
 }

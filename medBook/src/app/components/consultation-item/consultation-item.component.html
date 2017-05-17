@@ -1,19 +1,35 @@
 <div class="consultation-item">
     <span class="consultation-item__consultation-date">{{consultation.consultationDate | date:'y-MM-dd'}}</span>
     <h3 class="consultation-item__header">{{consultation.patient.name}}</h3>
-    <button class="consultation-item__show-details" [attr.aria-expanded]="(!detailsHidden)"
+    <button class="consultation-item__show-details no-button"
+            [ngClass]="{'consultation-item__show-details--expanded': !detailsHidden}"
+            [attr.aria-expanded]="(!detailsHidden)"
             (click)="toggleShowDetails()">
         <span class="visually-hidden">Show details</span>
     </button>
 
     <div class="consultation-item__details" [ngClass]="{'consultation-item__details--expanded': !detailsHidden}"
          [attr.aria-hidden]="detailsHidden">
-        <p>
-            <img src="{{consultation.doctor.image.url}}" class="consultation-item__doctor-image"/>
-            Doctor: {{consultation.doctor.name}} / {{consultation.doctor.id}} / {{consultation.doctor.role}}
-        </p>
+
+        <div class="consultation-item__person--patient consultation-item__person">
+            <h4 class="consultation-item__person-heading">Patient</h4>
+            <img src="{{consultation.patient.image.url}}" class="consultation-item__person-image"/>
+            <ul class="consultation-item__person-info">
+                <li>Name: {{consultation.patient.name}}</li>
+                <li>Condition: {{consultation.patient.condition}}</li>
+            </ul>
+        </div>
+
+        <div class="consultation-item__person--doctor consultation-item__person">
+            <h4 class="consultation-item__person-heading">Attending doctor</h4>
+            <ul class="consultation-item__person-info">
+                <li>Name: {{consultation.doctor.name}}</li>
+                <li>Specialization: {{consultation.doctor.role}}</li>
+            </ul>
+            <img src="{{consultation.doctor.image.url}}" class="consultation-item__person-image"/>
+        </div>
         <p>Room: {{consultation.room.name}}</p>
-        <p>Machine: {{consultation.room.treatmentMachine.name}}</p>
-        <span class="consultation-item__registration-date">{{consultation.registrationDate | date:'y-MM-dd'}}</span>
+        <p *ngIf="consultation.room.treatmentMachine">Machine: {{consultation.room.treatmentMachine.name}} ({{consultation.room.treatmentMachine.capability}})</p>
+        <p class="consultation-item__registration-date">Registration date: {{consultation.registrationDate | date:'y-MM-dd'}}</p>
     </div>
 </div>

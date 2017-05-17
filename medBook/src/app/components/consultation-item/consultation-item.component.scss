@@ -6,30 +6,85 @@
     padding: 10px;
 }
 
+.consultation-item__show-details {
+
+    position: relative;
+    padding: 10px 40px 10px 0;
+    color: $accent-color-dark;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#7dce94"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        width: 24px;
+        height: 24px;
+        display: block;
+        background-repeat: no-repeat;
+        border: 1px solid $accent-color-dark;
+        border-radius: 15px;
+        position: absolute;
+        top: -3px;
+        right: 0;
+    }
+}
+.consultation-item__show-details--expanded{
+    &::after{
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#7dce94"><path d="M19 13H5v-2h14v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    }
+}
 
 .consultation-item__header {
     text-align: right;
-    margin:0;
+    margin: 0;
 }
+
 .consultation-item__consultation-date {
     display: block;
 }
-
 
 .consultation-item__details {
     display: none;
     width: 100%;
 
-    &--expanded{
+    &--expanded {
         display: block;
     }
 }
 
-.consultation-item__doctor-image{
+.consultation-item__person {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border-bottom: 1px solid $accent-color-dark;
+    margin:$padding-medium 0;
+    padding: $padding-medium 0;
+}
+
+.consultation-item__person-heading {
+    width: 100%;
+    margin-top: 0;
+}
+
+.consultation-item__person-image {
     max-width: 300px;
     min-width: 100px;
     width: 30%;
+    align-self: flex-start;
+
+    .consultation-item__person--patient & {
+        margin-right: $padding-medium;
+
+    }
+
+    .consultation-item__person--doctor & {
+        margin-left: $padding-medium;
+    }
+
 }
 
-.consultation-item__registration-date{
+.consultation-item__person-info {
+    min-width: 50%;
+}
+
+.consultation-item__registration-date {
 }

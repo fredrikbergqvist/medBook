@@ -9,24 +9,21 @@ export class ConsultationService {
 
     constructor(private httpService:HttpService, private consultationFactory:ConsultationFactory) { }
 
-    getConsultations(date):Observable<any> {
+    getConsultations():Observable<any> {
         const serviceUrl = `http://localhost:8080/consultations`;
 
         return Observable.create(o => {
             this.httpService.get(serviceUrl)
                 .subscribe((responseData) => {
                     this.consultationFactory.createConsultations(responseData).subscribe(c => {
-
-                        let consultations = this.getConsultationsByDate(c, date);
-
-                        o.next(consultations);
+                        o.next(c);
                         o.complete();
                     });
                 });
         });
     }
 
-    private getConsultationsByDate(consultations:Array<Consultation>, date:Date) {
+    public getConsultationsByDate(consultations:Array<Consultation>, date:Date):Array<Consultation> {
         return consultations.filter(c => {
             return c.consultationDate.getFullYear() === date.getFullYear() &&
                 c.consultationDate.getMonth() === date.getMonth() &&

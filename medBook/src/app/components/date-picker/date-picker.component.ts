@@ -3,12 +3,11 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector :    'app-date-picker',
-    templateUrl : './date-picker.component.html',
-    styleUrls :   ['./date-picker.component.scss']
+    templateUrl : './date-picker.component.html'
 })
 export class DatePickerComponent implements OnChanges {
     @Input() selectedDate;
-    @Output() onChange:EventEmitter<string>;
+    @Output() onChange:EventEmitter<string> = new EventEmitter();
     initialized = false;
 
     dateForm = new FormGroup({
@@ -16,7 +15,6 @@ export class DatePickerComponent implements OnChanges {
     });
 
     constructor(private fb:FormBuilder) {
-        this.onChange = new EventEmitter();
         this.createForm();
     }
 

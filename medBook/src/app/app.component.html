@@ -1,12 +1,22 @@
-<header>
-    <h1>
-        MedBook
-    </h1>
-    <p>{{selectedDate | date:'y-MM-dd'}}</p>
+<main>
+    <header class="main-header">
+        <div class="main-header__content">
+            <h1 class="main-header__heading">
+                MedBook
+            </h1>
 
-    <app-date-picker [selectedDate]="selectedDate" (onChange)="dateChanged($event)"></app-date-picker>
-</header>
+            <button type="button" class="main-header__add-patient no-button" (click)="addPatientClick()"><span>Add patient</span>
+            </button>
+        </div>
 
-<app-consultation-list [selectedDate]="selectedDate"></app-consultation-list>
+    </header>
+    <article class="main-article">
+        <div *ngIf="showConsultationList">
+            <app-date-picker [selectedDate]="selectedDate" (onChange)="dateChanged($event)"></app-date-picker>
+            <app-consultation-list [selectedDate]="selectedDate"></app-consultation-list>
+        </div>
 
-<app-schedule-consultation></app-schedule-consultation>
+        <app-schedule-consultation (onPatientAdded)="patientAdded()"
+                                   *ngIf="!showConsultationList"></app-schedule-consultation>
+    </article>
+</main>

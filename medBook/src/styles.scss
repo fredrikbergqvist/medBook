@@ -1,4 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/lib/normalize";
+@import "assets/styles/abstract/variables";
+@import "assets/styles/abstract/hide";
+@import "assets/styles/abstract/fonts";
+@import "assets/styles/abstract/mq";
+
+@import "assets/styles/base";
+@import "assets/styles/loader";
+@import "assets/styles/heading";
+@import "assets/styles/lib/float-label";
+@import "assets/styles/forms";
+
+@import 'app/app.component';
 @import 'app/components/date-picker/date-picker.component';
 @import 'app/components/consultation-list/consultation-list.component';
 @import 'app/components/consultation-item/consultation-item.component';

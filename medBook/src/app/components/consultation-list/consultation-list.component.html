@@ -2,9 +2,14 @@
 
     <h2>Consultations</h2>
 
-    <p *ngIf="loading" class="loading">Loading consultations...</p>
+    <div *ngIf="loading" class="loader-container">
+        <p class="loader">Loading consultations...</p>
+    </div>
 
-    <p *ngIf="!consultations && !loading">No consultations found</p>
+    <div *ngIf="!consultationsExistForSelectedDate && !loading">
+        <p>No consultations found for {{selectedDate | date:'y-MM-dd'}}</p>
+        <p>Showing all scheduled consultations</p>
+    </div>
 
     <ul class="consultation-list__list">
         <li class="consultation-list__item" *ngFor="let consultation of consultations">

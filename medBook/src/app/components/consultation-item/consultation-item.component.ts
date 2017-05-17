@@ -3,8 +3,7 @@ import Consultation from '../../shared/consultation/consultation';
 
 @Component({
     selector :    'app-consultation-item',
-    templateUrl : './consultation-item.component.html',
-    styleUrls :   ['./consultation-item.component.scss']
+    templateUrl : './consultation-item.component.html'
 })
 export class ConsultationItemComponent {
     @Input() consultation:Consultation;

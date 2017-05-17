@@ -13,16 +13,16 @@ export class ImageService {
 
         return Observable.create(o => {
             this.httpService.get(serviceUrl)
-                .map((responseData) => {
-                    return new Image(responseData.id, responseData.url);
-                }).subscribe(result => {
-                o.next(result);
-                o.complete();
-            });
+                .subscribe(responseData => {
+                    const image = new Image(responseData.id, responseData.url);
+                    o.next(image);
+                    o.complete();
+
+                });
         });
     }
 
-    addImage(imageUrl:string):Observable<string> {
+    public addImage(imageUrl:string):Observable<string> {
         const serviceUrl = `http://localhost:8080/images`;
         const data = {
             url : imageUrl
@@ -31,7 +31,6 @@ export class ImageService {
         return this.httpService.post(data, serviceUrl)
             .map((responseData) => {
                 const imageJson = JSON.parse(responseData._body);
-                console.log('image service', imageJson);
                 return imageJson.id;
             });
     }

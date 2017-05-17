@@ -1,0 +1,53 @@
+$base-unit: 10px;
+
+$padding-small: $base-unit / 2;
+$padding-medium: $base-unit;
+$padding-large: $base-unit * 2;
+
+/*Colors*/
+$primary-color: #f9f8fd;
+$primary-color-light: #fff;
+
+$secondary-color-light: #ececec;
+$secondary-color: #333;
+$secondary-color-dark: #000;
+
+$tertiary-color: #ccc;
+
+$accent-color-dark: #7dce94;
+$accent-color: #F5AD28;
+
+$text-color: #333;
+
+/*fonts*/
+$icomoon-font-path: "/assets/fonts" !default;
+
+$icon-home3: "\e902";
+$icon-pencil: "\e905";
+$icon-spinner9: "\e982";
+$icon-cog: "\e994";
+$icon-trophy: "\e99e";
+$icon-floppy-disk: "\e962";
+$icon-user: "\e971";
+$icon-star-empty: "\e9d7";
+$icon-star-full: "\e9d9";
+$icon-circle-right: "\ea42";
+$icon-circle-left: "\ea44";
+$icon-plus: "\ea0a";
+$icon-minus: "\ea0b";
+$icon-cross: "\ea0f";
+
+
+
+$base-font-size: 16px;
+$font-size-large: 16px * 1.5;
+$font-size-xlarge: $base-font-size * 2;
+
+
+/*Media queries*/
+
+$mq-mini: 380px;
+$mq-small: 480px;
+$mq-medium: 768px;
+$mq-large: 1024px;
+$mq-xlarge: 1200px;

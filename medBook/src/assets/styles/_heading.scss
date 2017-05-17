@@ -1,0 +1,41 @@
+.main-header{
+    background-color: $secondary-color;
+    padding: 10px;
+
+
+}
+
+.main-header__heading{
+    margin: 0;
+    text-align: left;
+    color: $accent-color-dark;
+    line-height: 1;
+    display: inline-block;
+}
+
+.main-header__content{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.main-header__add-patient{
+    float: right;
+    position: relative;
+    padding: 10px 40px 10px 0;
+    color: $accent-color-dark;
+    cursor: pointer;
+
+    &::after{
+        content: '';
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#7dce94"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+        width: 24px;
+        height: 24px;
+        display: block;
+        background-repeat: no-repeat;
+        border: 1px solid $accent-color-dark;
+        border-radius: 15px;
+        position: absolute;
+        top: 5px;
+        right: 0;
+    }
+}
