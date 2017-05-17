@@ -51,29 +51,8 @@ export class HttpService {
         }
 
         return this.http.post(apiUrl, JSON.stringify(postData), args)
-            .map((responseData) => {
+            .map((responseData:any) => {
                 return responseData;
             });
-    }
-
-    uploadFile(formData, serviceUrl:string):Promise<any> {
-        return new Promise((resolve, reject) => {
-            let xhr:XMLHttpRequest = new XMLHttpRequest();
-
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        resolve(JSON.parse(xhr.response));
-                    } else {
-                        console.error('Error when uploading file');
-                        reject(xhr.response);
-                    }
-                }
-            };
-
-            xhr.open('POST', serviceUrl, true);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            xhr.send(formData);
-        });
     }
 }

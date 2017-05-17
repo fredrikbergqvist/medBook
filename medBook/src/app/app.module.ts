@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
@@ -17,16 +17,23 @@ import {ConsultationFactory} from './shared/consultation/consultation.factory';
 import {DoctorFactory} from './shared/doctor/doctor.factory';
 import {RoomFactory} from './shared/room/room.factory';
 import { ConsultationItemComponent } from './components/consultation-item/consultation-item.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { ScheduleConsultationComponent } from './components/schedule-consultation/schedule-consultation.component';
+import {MedicalConditionsService} from './shared/services/medical-conditions.service';
+import {SpecialistRoleService} from './shared/services/specialist-role.service';
 
 @NgModule({
     declarations : [
         AppComponent,
         ConsultationListComponent,
-        ConsultationItemComponent
+        ConsultationItemComponent,
+        DatePickerComponent,
+        ScheduleConsultationComponent
     ],
     imports :      [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule
     ],
     providers :    [
@@ -39,6 +46,8 @@ import { ConsultationItemComponent } from './components/consultation-item/consul
         MachineService,
         ConsultationService,
         ConsultationFactory,
+        MedicalConditionsService,
+        SpecialistRoleService,
         ImageService,
         HttpService
     ],

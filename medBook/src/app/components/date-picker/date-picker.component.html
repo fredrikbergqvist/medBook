@@ -1,0 +1,7 @@
+<fieldset class="date-picker">
+    <legend>Select date</legend>
+    <form class="date-picker__form"  [formGroup]="dateForm">
+        <label for="date">Show consultations scheduled for this date</label>
+        <input class="date-picker__input" id="date" type="date" value="{{selectedDate | date:'y-MM-dd'}}" formControlName="date">
+    </form>
+</fieldset>

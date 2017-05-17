@@ -6,7 +6,7 @@ import {Room} from './room';
 
 @Injectable()
 export class RoomFactory {
-    constructor(public machineService:MachineService) {}
+    constructor(private machineService:MachineService) {}
 
     createRoom(roomJson:any):Observable<Room> {
         return Observable.create(o => {
@@ -16,6 +16,18 @@ export class RoomFactory {
                     o.next(room);
                     o.complete();
                 });
+        });
+    }
+
+    createRooms(roomsJson:any) {
+        const rooms:Array<Observable<Room>> = [];
+        roomsJson.forEach(r => rooms.push(this.createRoom(r)));
+
+        return Observable.create(o => {
+            Observable.forkJoin(rooms).subscribe(e => {
+                o.next(e);
+                o.complete();
+            });
         });
     }
 }

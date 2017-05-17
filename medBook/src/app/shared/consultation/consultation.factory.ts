@@ -6,27 +6,11 @@ import {PatientService} from '../patient/patient.service';
 import {DoctorService} from '../doctor/doctor.service';
 import {RoomService} from '../room/room.service';
 
-let mock = {
-    registrationDate : new Date(),
-    patientId :        '',
-    doctorId :         'df765d63-3951-11e7-a03b-332fb645a958',
-    roomId :           'df765d6b-3951-11e7-a03b-332fb645a958',
-    consultationDate : new Date()
-};
-let mock2 = {
-    registrationDate : new Date('2017-05-14'),
-    patientId :        '',
-    doctorId :         'df765d64-3951-11e7-a03b-332fb645a958',
-    roomId :           'df765d6b-3951-11e7-a03b-332fb645a958',
-    consultationDate : new Date('2017-05-14')
-};
-
 @Injectable()
 export class ConsultationFactory {
-    constructor(public patientService:PatientService, public doctorService:DoctorService, public roomService:RoomService) {}
+    constructor(private patientService:PatientService, private doctorService:DoctorService, private roomService:RoomService) {}
 
     createConsultations(consultationsJson:Array<any>):Observable<Array<Consultation>> {
-        consultationsJson = [mock, mock2, mock];
         const consultations:Array<Observable<Consultation>> = [];
         consultationsJson.forEach(c => consultations.push(this.createConsultation(c)));
 
@@ -48,14 +32,21 @@ export class ConsultationFactory {
 
             Observable.forkJoin(observableList).subscribe(result => {
                 const consultation = new Consultation(
-                    consultationJson.registrationDate,
+                    this.createDate(consultationJson.registrationDate),
                     result[0],
                     result[1],
                     result[2],
-                    consultationJson.consultationDate);
+                    this.createDate(consultationJson.consultationDate));
                 o.next(consultation);
                 o.complete();
             });
         });
+    }
+
+    private createDate(date:string):Date {
+        if (date) {
+            return new Date(date);
+        }
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {ConsultationService} from '../../shared/consultation/consultation.service';
 import Consultation from '../../shared/consultation/consultation';
 
@@ -12,7 +12,7 @@ export class ConsultationListComponent implements OnChanges {
     public consultations:Array<Consultation>;
     public loading = true;
 
-    constructor(public consultationService:ConsultationService) { }
+    constructor(private consultationService:ConsultationService) { }
 
     ngOnChanges(changes:SimpleChanges):void {
         this.getConsultations();

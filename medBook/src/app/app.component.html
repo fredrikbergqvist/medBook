@@ -1,5 +1,12 @@
-<h1>
-    MedBook
-</h1>
+<header>
+    <h1>
+        MedBook
+    </h1>
+    <p>{{selectedDate | date:'y-MM-dd'}}</p>
+
+    <app-date-picker [selectedDate]="selectedDate" (onChange)="dateChanged($event)"></app-date-picker>
+</header>
 
 <app-consultation-list [selectedDate]="selectedDate"></app-consultation-list>
+
+<app-schedule-consultation></app-schedule-consultation>

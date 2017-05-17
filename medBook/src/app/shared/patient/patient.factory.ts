@@ -1,19 +1,30 @@
 import {Injectable} from '@angular/core';
 import Patient from './patient';
 import {ImageService} from '../image/image.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class PatientFactory {
-    constructor(public imageService:ImageService) {}
+    constructor(private imageService:ImageService) {}
 
-    createPatient(patientJson:any):Patient {
+    createPatient(patientJson:any):Observable<Patient> {
         const patient = new Patient(
             patientJson.id,
             patientJson.name,
             patientJson.condition,
-            null
-            /*this.imageService.getImage(patientJson.imageId)*/
-        );
-        return patient;
+            null);
+        return Observable.create(o => {
+            if (patientJson.imageId) {
+                console.log('patient',patientJson);
+                this.imageService.getImage(patientJson.imageId).subscribe(img => {
+                    patient.image = img;
+                    o.next(patient);
+                    o.complete();
+                });
+            } else {
+                o.next(patient);
+                o.complete();
+            }
+        });
     }
 }

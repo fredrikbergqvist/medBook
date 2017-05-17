@@ -7,7 +7,7 @@ import Consultation from './consultation';
 @Injectable()
 export class ConsultationService {
 
-    constructor(public httpService:HttpService, public consultationFactory:ConsultationFactory) { }
+    constructor(private httpService:HttpService, private consultationFactory:ConsultationFactory) { }
 
     getConsultations(date):Observable<any> {
         const serviceUrl = `http://localhost:8080/consultations`;
@@ -26,7 +26,7 @@ export class ConsultationService {
         });
     }
 
-    private getConsultationsByDate(consultations:Array<Consultation>, date:any) {
+    private getConsultationsByDate(consultations:Array<Consultation>, date:Date) {
         return consultations.filter(c => {
             return c.consultationDate.getFullYear() === date.getFullYear() &&
                 c.consultationDate.getMonth() === date.getMonth() &&

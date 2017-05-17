@@ -1,0 +1,56 @@
+<div class="schedule-consultation">
+    <form class="schedule-consultation__form" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div>
+                <label for="schedule-date">Consultation date</label>
+                <input class="schedule-consultation__date" id="schedule-date" type="date"
+                       value="{{model.selectedDate | date:'y-MM-dd'}}" (ngModelChange)="onDateChange($event)" [(ngModel)]="model.selectedDate" name="scheduleDate" />
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Patient</legend>
+            <div>
+                <label for="patient-name">Name:</label>
+                <input type="text" id="patient-name" [(ngModel)]="model.patientName" name="patientName" required/>
+
+            </div>
+            <div>
+                <label for="patient-image">Image:</label>
+                <input type="text" id="patient-image" [(ngModel)]="model.patientUrl" name="patientUrl" required />
+            </div>
+            <div>
+                <label for="patient-condition">Condition</label>
+                <select id="patient-condition" [(ngModel)]="model.selectedCondition" name="conditions" (ngModelChange)="onConditionChange($event)" required>
+                    <option disabled selected value> -- select an option -- </option>
+                    <option *ngFor="let c of conditions" [ngValue]="c">{{c}}</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Doctor</legend>
+            <div>
+                <label for="doctor">Select doctor</label>
+                <select id="doctor" [(ngModel)]="model.selectedDoctor" name="doctor" required>
+                    <option disabled selected value> -- select an option -- </option>
+                    <option *ngFor="let d of doctors" [ngValue]="d">{{d.name}}</option>
+                </select>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Room</legend>
+            <div>
+                <label for="room">Select room</label>
+                <select id="room" [(ngModel)]="model.selectedRoom" name="doctor" required>
+                    <option disabled selected value> -- select an option -- </option>
+                    <option *ngFor="let r of rooms" [ngValue]="r">{{r.name}}</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <button type="submit"><span>Save</span></button>
+    </form>
+</div>

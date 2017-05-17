@@ -6,7 +6,7 @@ import {HttpService} from '../services/http.service';
 @Injectable()
 export class ImageService {
 
-    constructor(public httpService:HttpService) { }
+    constructor(private httpService:HttpService) { }
 
     public getImage(imageId:string):Observable<Image> {
         const serviceUrl = `http://localhost:8080/images/${imageId}`;
@@ -22,8 +22,17 @@ export class ImageService {
         });
     }
 
-    public getImages():Array<Image> {
-        return [];
-    }
+    addImage(imageUrl:string):Observable<string> {
+        const serviceUrl = `http://localhost:8080/images`;
+        const data = {
+            url : imageUrl
+        };
 
+        return this.httpService.post(data, serviceUrl)
+            .map((responseData) => {
+                const imageJson = JSON.parse(responseData._body);
+                console.log('image service', imageJson);
+                return imageJson.id;
+            });
+    }
 }
