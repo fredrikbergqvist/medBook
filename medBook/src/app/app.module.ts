@@ -20,7 +20,6 @@ import { ConsultationItemComponent } from './components/consultation-item/consul
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { ScheduleConsultationComponent } from './components/schedule-consultation/schedule-consultation.component';
 import {MedicalConditionsService} from './shared/services/medical-conditions.service';
-import {SpecialistRoleService} from './shared/services/specialist-role.service';
 
 @NgModule({
     declarations : [
@@ -47,7 +46,6 @@ import {SpecialistRoleService} from './shared/services/specialist-role.service';
         ConsultationService,
         ConsultationFactory,
         MedicalConditionsService,
-        SpecialistRoleService,
         ImageService,
         HttpService
     ],

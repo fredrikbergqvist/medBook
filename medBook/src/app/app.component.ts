@@ -10,11 +10,9 @@ export class AppComponent {
     public showConsultationList = true;
 
     public dateChanged(date) {
-        const newDate = !date
+        this.selectedDate = !date
             ? new Date()
             : new Date(date);
-
-        this.selectedDate = newDate;
     }
 
     public addPatientClick() {
@@ -22,6 +20,10 @@ export class AppComponent {
     }
 
     public patientAdded() {
+        this.showConsultationList = true;
+    }
+
+    public backClick() {
         this.showConsultationList = true;
     }
 }

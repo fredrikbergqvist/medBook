@@ -5,7 +5,13 @@
                 MedBook
             </h1>
 
-            <button type="button" class="main-header__add-patient no-button" (click)="addPatientClick()"><span>Add patient</span>
+            <button *ngIf="showConsultationList" type="button" class="main-header__add-patient no-button"
+                    (click)="addPatientClick()">
+                <span>Add patient</span>
+            </button>
+            <button *ngIf="!showConsultationList" type="button" class="main-header__back no-button"
+                    (click)="backClick()">
+                <span>Back</span>
             </button>
         </div>
 

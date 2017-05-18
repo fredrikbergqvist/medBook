@@ -3,12 +3,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Doctor} from './doctor';
 import {ImageService} from '../image/image.service';
+import {IDoctorJson} from './iDoctor';
 
 @Injectable()
 export class DoctorFactory {
     constructor(private imageService:ImageService) {}
 
-    createDoctor(doctorJson:any):Observable<Doctor> {
+    createDoctor(doctorJson:IDoctorJson):Observable<Doctor> {
         return Observable.create(o => {
             this.imageService.getImage(doctorJson.imageId)
                 .subscribe(imageResult => {
@@ -19,7 +20,7 @@ export class DoctorFactory {
         });
     }
 
-    createDoctors(doctorsJson:any):Observable<Array<Doctor>> {
+    createDoctors(doctorsJson:Array<IDoctorJson>):Observable<Array<Doctor>> {
         const doctors:Array<Observable<Doctor>> = [];
         doctorsJson.forEach(dr => doctors.push(this.createDoctor(dr)));
 

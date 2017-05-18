@@ -1,17 +1,17 @@
 <div class="consultation-list">
 
-    <h2>Consultations</h2>
+    <h2 class="consultation-list__heading">Consultations for {{selectedDate | date:'y-MM-dd'}}</h2>
 
     <div *ngIf="loading" class="loader-container">
         <p class="loader">Loading consultations...</p>
     </div>
 
-    <div *ngIf="!consultationsExistForSelectedDate && !loading">
-        <p>No consultations found for {{selectedDate | date:'y-MM-dd'}}</p>
-        <p>Showing all scheduled consultations</p>
+    <div class="consultation-list__not-found" *ngIf="!consultationsExistForSelectedDate && !loading">
+        <p>No consultations found!</p>
+        <p *ngIf="consultations.length">Showing all scheduled consultations</p>
     </div>
 
-    <ul class="consultation-list__list">
+    <ul class="consultation-list__list" *ngIf="!loading">
         <li class="consultation-list__item" *ngFor="let consultation of consultations">
             <app-consultation-item [consultation]="consultation"></app-consultation-item>
         </li>

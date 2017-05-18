@@ -1,42 +1,23 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector :    'app-date-picker',
     templateUrl : './date-picker.component.html'
 })
-export class DatePickerComponent implements OnChanges {
+export class DatePickerComponent {
     @Input() selectedDate;
     @Output() onChange:EventEmitter<string> = new EventEmitter();
-    initialized = false;
 
-    dateForm = new FormGroup({
-        date : new FormControl()
-    });
-
-    constructor(private fb:FormBuilder) {
-        this.createForm();
+    setDate(newDate) {
+        this.selectedDate.setDate(newDate);
+        this.onChange.emit(this.selectedDate);
     }
 
-    private createForm() {
-        this.dateForm = this.fb.group({
-            date : new Date()
-        });
-
-        this.dateForm.valueChanges.subscribe(change => {
-
-            if (!change.date) {
-                change.date = new Date();
-            }
-            this.onChange.emit(change.date);
-        });
+    previousDay() {
+        this.setDate(this.selectedDate.getDate() - 1);
     }
 
-    ngOnChanges(changes:SimpleChanges):void {
-        if (!this.initialized) {
-            this.dateForm.controls['date'].updateValueAndValidity(this.selectedDate);
-        }
-        this.initialized = true;
+    nextDay() {
+        this.setDate(this.selectedDate.getDate() + 1);
     }
-
 }

@@ -1,7 +1,5 @@
-<fieldset class="date-picker">
-    <legend class="visually-hidden">Select date</legend>
-    <form class="date-picker__form"  [formGroup]="dateForm">
-        <label for="date">Show consultations scheduled for this date</label>
-        <input class="date-picker__input" id="date" type="date" value="{{selectedDate | date:'y-MM-dd'}}" formControlName="date">
-    </form>
-</fieldset>
+<div class="select-date">
+    <button class="select-date__previous-date no-button" (click)="previousDay()"><span class="visually-hidden">Previous</span></button>
+    <p class="select-date__selected-date">{{selectedDate | date:'y-MM-dd'}}</p>
+    <button class="select-date__next-date no-button" (click)="nextDay()"><span class="visually-hidden">Next</span></button>
+</div>

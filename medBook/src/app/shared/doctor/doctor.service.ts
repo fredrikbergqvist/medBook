@@ -19,7 +19,12 @@ export class DoctorService {
                 return Observable.of(doctor);
             }
         }
-        this.getDoctorsFromServer();
+
+        this.cacheListOfDoctors();
+        return this.getDoctorFromServer(doctorId);
+    }
+
+    private getDoctorFromServer(doctorId) {
         const serviceUrl = `http://localhost:8080/doctors/${doctorId}`;
         return Observable.create(o => {
             this.httpService.get(serviceUrl)
@@ -33,12 +38,17 @@ export class DoctorService {
         });
     }
 
+    private cacheListOfDoctors() {
+        this.getDoctorsFromServer();
+    }
+
     private getDoctorsFromServer() {
         const serviceUrl = 'http://localhost:8080/doctors';
 
         return Observable.create(o => {
             this.httpService.get(serviceUrl)
                 .subscribe(result => {
+
                     this.doctorFactory.createDoctors(result)
                         .subscribe(drs => {
                             this.doctors = drs;
@@ -47,7 +57,6 @@ export class DoctorService {
                         });
                 });
         });
-
     }
 
     private getDoctorFromArray(doctorId:string):Doctor {
@@ -57,5 +66,6 @@ export class DoctorService {
                 return this.doctors[i];
             }
         }
+        return null;
     }
 }

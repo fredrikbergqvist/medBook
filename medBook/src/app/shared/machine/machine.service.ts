@@ -5,11 +5,6 @@ import {Machine} from './machine';
 
 @Injectable()
 export class MachineService {
-    machineCapabilities = {
-        simple :   'simple',
-        advanced : 'advanced'
-    };
-
     constructor(private httpService:HttpService) { }
 
     getMachine(machineId:string):Observable<Machine> {

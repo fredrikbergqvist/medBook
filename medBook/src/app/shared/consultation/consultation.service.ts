@@ -9,12 +9,17 @@ export class ConsultationService {
 
     constructor(private httpService:HttpService, private consultationFactory:ConsultationFactory) { }
 
-    getConsultations():Observable<any> {
+    getConsultations():Observable<Array<Consultation>> {
         const serviceUrl = `http://localhost:8080/consultations`;
 
         return Observable.create(o => {
             this.httpService.get(serviceUrl)
                 .subscribe((responseData) => {
+                    if (!responseData.length) {
+                        o.next([]);
+                        o.complete();
+                        return;
+                    }
                     this.consultationFactory.createConsultations(responseData).subscribe(c => {
                         o.next(c);
                         o.complete();

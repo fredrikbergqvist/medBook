@@ -3,12 +3,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {MachineService} from '../machine/machine.service';
 import {Room} from './room';
+import {IRoomJson} from './iroom-json';
 
 @Injectable()
 export class RoomFactory {
     constructor(private machineService:MachineService) {}
 
-    createRoom(roomJson:any):Observable<Room> {
+    createRoom(roomJson:IRoomJson):Observable<Room> {
         return Observable.create(o => {
             this.machineService.getMachine(roomJson.treatmentMachineId)
                 .subscribe(machineResult => {
@@ -19,7 +20,7 @@ export class RoomFactory {
         });
     }
 
-    createRooms(roomsJson:any) {
+    createRooms(roomsJson:Array<IRoomJson>) {
         const rooms:Array<Observable<Room>> = [];
         roomsJson.forEach(r => rooms.push(this.createRoom(r)));
 

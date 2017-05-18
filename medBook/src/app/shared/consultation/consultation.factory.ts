@@ -5,12 +5,15 @@ import 'rxjs/Rx';
 import {PatientService} from '../patient/patient.service';
 import {DoctorService} from '../doctor/doctor.service';
 import {RoomService} from '../room/room.service';
+import {IConsultation} from './iConsultationJson';
 
 @Injectable()
 export class ConsultationFactory {
-    constructor(private patientService:PatientService, private doctorService:DoctorService, private roomService:RoomService) {}
+    constructor(private patientService:PatientService,
+                private doctorService:DoctorService,
+                private roomService:RoomService) {}
 
-    createConsultations(consultationsJson:Array<any>):Observable<Array<Consultation>> {
+    createConsultations(consultationsJson:Array<IConsultation>):Observable<Array<Consultation>> {
         const consultations:Array<Observable<Consultation>> = [];
         consultationsJson.forEach(c => consultations.push(this.createConsultation(c)));
 
@@ -22,7 +25,7 @@ export class ConsultationFactory {
         });
     }
 
-    createConsultation(consultationJson:any):Observable<Consultation> {
+    createConsultation(consultationJson:IConsultation):Observable<Consultation> {
         let observableList:Array<Observable<any>> = [];
 
         return Observable.create(o => {
