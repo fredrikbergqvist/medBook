@@ -39,7 +39,9 @@ export class DoctorService {
     }
 
     private cacheListOfDoctors() {
-        this.getDoctorsFromServer();
+        this.getDoctorsFromServer().subscribe((drs) => {
+            this.doctors = drs;
+        });
     }
 
     private getDoctorsFromServer() {
@@ -48,10 +50,8 @@ export class DoctorService {
         return Observable.create(o => {
             this.httpService.get(serviceUrl)
                 .subscribe(result => {
-
                     this.doctorFactory.createDoctors(result)
                         .subscribe(drs => {
-                            this.doctors = drs;
                             o.next(drs);
                             o.complete();
                         });
